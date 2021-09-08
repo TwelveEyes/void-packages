@@ -1,6 +1,6 @@
 # Template file for 'edk2'
 pkgname=edk2
-version=202005
+version=202011
 revision=1
 archs="x86_64* i686*"
 create_wrksrc=yes
@@ -9,13 +9,13 @@ short_desc="EFI Development Kit II"
 maintainer="Franc[e]sco <lolisamurai@tfwno.gf>"
 license="BSD-2-Clause-Patent, MIT, Apache-2.0"
 homepage="https://github.com/tianocore/edk2/tree/master/OvmfPkg"
-_openssl_ver=1.1.1d
+_openssl_ver=1.1.1g
 _brotli_commit=666c3280cc11dc433c303d79a83d4ffbdd12cc8d
 distfiles="https://github.com/tianocore/edk2/archive/${pkgname}-stable${version}.tar.gz
  https://www.openssl.org/source/openssl-${_openssl_ver}.tar.gz
  https://github.com/google/brotli/archive/${_brotli_commit}.tar.gz"
-checksum="373c3eff3497316a48fcf4be8dcee227431cbce86dcd80a004950e992f0297e2
-1e3a91bc1f9dfce01af26026f856e064eab4c8ee0a8f457b5ae30b40b8b711f2
+checksum="53e877c714426c2c1957d1e875d99c7eb6602a858d7ec8ba4eac42c37e3ce064
+ddb04774f1e32f0c49751e21b67216ac87852ceb056b75209af2443400636d46
 cd82ce69defa40e9e36443e59d90aa5f8c6013024fae6a2de8c31afc2c707065"
 _toolchain_opt=GCC5
 
@@ -98,7 +98,7 @@ do_install() {
 		vmkdir /usr/share/${pkgname}/${d}
 	done
 	vmkdir /usr/lib/${pkgname}/bin
-	bins="Brotli DevicePath EfiRom GenCrc32 GenFfs GenFv GenFw GenSec
+	bins="BrotliCompress DevicePath EfiRom GenCrc32 GenFfs GenFv GenFw GenSec
 	 LzmaCompress Split TianoCompress VfrCompile VolInfo"
 	for bin in $bins; do
 		vinstall BaseTools/Source/C/bin/${bin} 755 /usr/lib/${pkgname}/bin
