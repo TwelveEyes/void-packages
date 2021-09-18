@@ -1,0 +1,45 @@
+# Template file for 'prboom'
+pkgname=prboom
+version=2.5.0
+revision=1
+configure_args="--disable-gl"
+hostmakedepends="make"
+makedepends="libpng-devel SDL-devel SDL_mixer-devel SDL_net-devel"
+short_desc="PrBoom is a version of the classic 3D shoot'em'up game Doom, originally written by id Software."
+maintainer="Gene <elkaufman5@gmail.com>"
+license="GPL-2.0-or-later"
+homepage="https://github.com/TwelveEyes/prboom"
+distfiles="${homepage}/archive/refs/tags/v${version}.tar.gz"
+checksum=6f775aec3283cf731e6457b45dca531970597ad84e412ab67d8f4780eb45e86e
+
+do_configure() {
+        ./configure ${configure_args}
+}
+
+do_build() {
+        make
+}
+
+do_install() {
+        cd src
+
+        vbin prboom
+        vbin prboom-game-server
+
+        cd ../data
+
+        vmkdir /usr/share/games/doom
+        vcopy prboom.wad /usr/share/games/doom
+
+        cd ../doc
+
+        vdoc boom.txt
+        vdoc MBF.txt
+        vdoc MBFFAQ.txt
+        vdoc README.compat
+        vdoc README.demos
+
+        vman boom.cfg.5
+        vman prboom-game-server.6
+        vman prboom.6
+}
