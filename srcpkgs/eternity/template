@@ -1,0 +1,26 @@
+# Template file for 'eternity'
+pkgname=eternity
+version=4.02.00
+revision=1
+build_style=cmake
+hostmakedepends="git"
+makedepends="SDL2_mixer-devel SDL2_net-devel"
+short_desc="Eternity is an advanced DOOM source port descended from SMMU"
+maintainer="Gene <elkaufman5@gmail.com>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/team-eternity/eternity"
+distfiles="${homepage}/archive/refs/tags/${version}.tar.gz"
+checksum=bb9f69af38394dadd5b4d619b4ce8930728e1e61c70085379f53978be228c333
+_adlmidi_repo="https://github.com/Wohlstand/libADLMIDI"
+
+pre_configure() {
+	git clone ${_adlmidi_repo} adlmidi
+}
+
+post_install() {
+	vinstall base/doom2/delete.me 644 usr/share/eternity/base/doom2
+	vinstall base/hacx/delete.me 644 usr/share/eternity/base/hacx
+	vinstall base/plutonia/delete.me 644 usr/share/eternity/base/plutonia
+	vinstall base/shots/delete.me 644 usr/share/eternity/base/shots
+	vinstall base/tnt/delete.me 644 usr/share/eternity/base/tnt
+}
