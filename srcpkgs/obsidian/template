@@ -1,0 +1,18 @@
+# Template file for 'obsidian'
+pkgname=obsidian
+version=0.0.20230202
+revision=1
+wrksrc=Obsidian-obsidian
+build_style=cmake
+hostmakedepends="flex git unzip"
+makedepends="fltk-devel"
+short_desc="OBSIDIAN is a random level generator for the classic FPS 'DOOM'"
+maintainer="Gene <elkaufman5@gmail.com>"
+license="GPL-2.0-or-later"
+homepage="https://github.com/dashodanger/Obsidian"
+distfiles="${homepage}/archive/refs/heads/obsidian.zip"
+checksum=dda2a2809d11acd7cbebffa871266df7618338f11dcf480a250fe34d95a43685
+
+do_install() {
+	return 1
+}
