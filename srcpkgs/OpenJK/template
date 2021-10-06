@@ -1,8 +1,9 @@
 # Template file for 'OpenJK'
 pkgname=OpenJK
-version=0.0.20210922
+version=0.0.20242603
 revision=1
-_gitrev=43e9a3da555a487e23081bbd03101e7c926a1e83
+_gitrev=61a9ff629ede762a20e1e98ea092f3728109d806
+wrksrc="${pkgname}-${_gitrev}"
 build_style=cmake
 configure_args="-DCMAKE_INSTALL_PREFIX=/usr/lib/${pkgname} -DBuildJK2SPEngine=on
  -DBuildJK2SPGame=on -DBuildJK2SPRdVanilla=on"
@@ -11,9 +12,9 @@ makedepends="libjpeg-turbo-devel libpng-devel zlib-devel SDL2-devel"
 short_desc="Open Source Implementation of Jedi Knight II and III Engine"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-only"
-homepage="https://github.com/JACoders/OpenJK"
-distfiles="https://github.com/JACoders/OpenJK/archive/${_gitrev}.tar.gz"
-checksum=efd2e3d96fe449819c4276dfea7ae7d591591ee0e651167844110e073f2edb3c
+homepage="https://github.com/TwelveEyes/OpenJK"
+distfiles="https://github.com/TwelveEyes/OpenJK/archive/${_gitrev}.tar.gz"
+checksum=054e3bf788e297ca8af9dd1dbfd757f52042532cd0839b4dff16bacb6bdd7425
 
 post_install() {
 	vbin "${FILESDIR}/openjk"
