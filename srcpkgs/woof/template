@@ -1,0 +1,14 @@
+# Template file for 'woof'
+pkgname=woof
+version=10.5.1
+revision=1
+wrksrc=woof-woof_${version}
+build_style=cmake
+hostmakedepends="pkg-config"
+makedepends="SDL2_mixer-devel SDL2_net-devel"
+short_desc="Woof! is Doom source port MBF targeted at modern systems"
+maintainer="Gene <elkaufman5@gmail.com>"
+license="GPL-2.0-or-later"
+homepage="https://github.com/fabiangreffrath/woof"
+distfiles="${homepage}/archive/refs/tags/woof_${version}.zip"
+checksum=0288deed9b559287456cf3d2442d61853d1d3c00e4660bb89b68e18885ff77db
