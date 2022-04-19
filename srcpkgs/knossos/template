@@ -1,0 +1,29 @@
+# Template file for 'knossos'
+pkgname=knossos
+version=0.14.3
+revision=1
+#archs="i686 x86_64"
+wrksrc=old-knossos-${version}
+#create_wrksrc=yes
+build_style=python3-module
+#configure_args=""
+#make_build_args=""
+#make_install_args=""
+#conf_files=""
+#make_dirs="/var/log/dir 0755 root root"
+hostmakedepends="python3-setuptools ninja yarn"
+makedepends="python3-PyQt5"
+depends=""
+short_desc="A simple mod manager for FreeSpace 2 Open"
+maintainer="Gene <elkaufman5@gmail.com>"
+license="Apache-2.0"
+homepage="https://github.com/ngld/old-knossos"
+#changelog=""
+distfiles="${homepage}/archive/v${version}.tar.gz"
+checksum=a3af52c33f8a246d2e8f4a7371d645a2541f49549679dff095a9f5e14d65d3a8
+
+do_build() {
+	yarn install
+	python configure.py
+	ninja resources
+}
