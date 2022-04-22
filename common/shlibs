@@ -4271,3 +4271,5 @@ libgrass_gproj.8.3.so grass-8.3.0_1
 libgrass_imagery.8.3.so grass-8.3.0_1
 libgrass_raster.8.3.so grass-8.3.0_1
 libgrass_vector.8.3.so grass-8.3.0_1
+libLimeSuite.so.20.10-1 LimeSuite-20.10.0_1
+libfmod.so.13 rzdoom-0.0.20220422_1

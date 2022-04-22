@@ -1,0 +1,40 @@
+# Template file for 'rzdoom'
+pkgname=rzdoom
+version=0.0.20231009
+revision=1
+wrksrc=rzdoom-code-31c84d7adada8307c472398bd85e1248fc57756b
+build_style=cmake
+configure_args="-UFMOD_LIBRARY -UFMOD_INCLUDE_DIR fmodstudioapi20206linux
+ -DFMOD_LIBRARY=fmodstudioapi20206linux/api/core/lib/x86_64/libfmod.so.13.6
+ -DFMOD_INCLUDE_DIR=fmodstudioapi20206linux/api/core/inc"
+hostmakedepends="wget tar patchelf"
+makedepends="fluidsynth-devel SDL2-devel"
+depends=""
+short_desc="Highly moddable Doom engine with support for all Doom engine games"
+maintainer="Gene <elkaufman5@gmail.com>"
+license="GPL-3.0-or-later"
+homepage="https://sourceforge.net/projects/rzdoom/"
+distfiles="https://sourceforge.net/code-snapshots/git/r/rz/rzdoom/code.git/rzdoom-code-31c84d7adada8307c472398bd85e1248fc57756b.zip"
+checksum=bdf6bc2c69deb012f560cb5c70a0abf24e99976b548495aca55d34da6ff9f54f
+_fmod="https://download1486.mediafire.com/o0onzh130x6g0JCZucMtUwKtSSiTlQlwckn0WwFFE6G1ef1RtF-dYGVDA0CRk79PB2xIrnXpjbO9MQfaBS1WpNO7aprdhNzVyuhgEpMTwGXfS9QFKLaYjjVRIIxM_e4_G2txgDMcDkUthcUJU7OXfoSfxyf-ikiYMicyq4BimXG9/pszc1g5cixrt79g/fmodstudioapi20206linux.tar.gz"
+
+pre_configure() {
+	mkdir build
+	cd build
+	wget -nc ${_fmod}
+	tar -xzf fmodstudioapi20206linux.tar.gz
+}
+
+pre_install() {
+	cd build
+	patchelf --force-rpath --set-rpath "./" rzdoom
+	mv fmodstudioapi20206linux/api/core/lib/x86_64/libfmod.so.13.6 libfmod.so.13
+}
+
+do_install() {
+	vinstall build/rzdoom 755 usr/lib/rzdoom
+	vmkdir usr/bin
+	ln -sf /usr/lib/rzdoom/rzdoom ${DESTDIR}/usr/bin
+	vinstall build/rzdoom.pk3 644 usr/lib/rzdoom
+	vinstall build/libfmod.so.13 644 usr/lib/rzdoom
+}
