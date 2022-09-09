@@ -1,0 +1,21 @@
+# Template file for 'DoomRunner'
+pkgname=DoomRunner
+version=1.7.1
+revision=1
+build_style=qmake
+hostmakedepends="qt5-qmake qt5-host-tools"
+makedepends="qt5-devel"
+depends="qt5"
+short_desc="Modern preset-oriented graphical launcher of ZDoom and derivatives"
+maintainer="Gene <elkaufman5@gmail.com>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/Youda008/DoomRunner"
+distfiles="${homepage}/archive/refs/tags/v${version}.zip"
+checksum=932791e6f842eea4ff1b9f6f35b4c2f74bd0271432d0978ed0aac89ae60a16d6
+
+do_build() {
+	mkdir -p "${wrksrc}/build-dynamic"
+	cd "${wrksrc}/build-dynamic"
+	qmake ../DoomRunner.pro -spec linux-g++ "CONFIG+=release"
+	make ${makejobs} ${make_build_args} ${make_build_target} CC="$CC" CXX="$CXX" LINK="$CXX"
+}
